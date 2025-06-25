@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Calendar } from 'lucide-react'
 import { useΨNavigationAnalytics } from '@/hooks/useΨNavigationAnalytics'
+import { useΦTranslations } from '@/hooks/useΦTranslations'
 import { tw, buttonClasses, headingClasses, textClasses } from '@/utils/styling/tw'
 
 /**
@@ -19,6 +20,12 @@ export default function HeroSection() {
    * Provides comprehensive navigation event logging
    */
   const { trackBookingCTAClick, trackNavigationClick } = useΨNavigationAnalytics()
+
+  /**
+   * Translation hook for accessing multilingual content
+   * Provides language-specific text and labels
+   */
+  const { hero } = useΦTranslations()
 
   /**
    * Initializes component state and triggers entrance animation
@@ -60,13 +67,20 @@ export default function HeroSection() {
   return (
     <section className={tw(
       'relative min-h-screen flex items-center justify-center',
-      'bg-gradient-to-br from-primary-50 to-primary-100',
       'overflow-hidden'
     )}>
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[url('/pattern.svg')] bg-repeat opacity-20"></div>
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.pexels.com/photos/30311728/pexels-photo-30311728.jpeg"
+          alt="Elegant hall interior with modern design and warm lighting"
+          className="w-full h-full object-cover"
+          loading="eager"
+        />
       </div>
+      
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/40"></div>
       
       {/* Content */}
       <div className="container-custom relative z-10 text-center">
@@ -76,28 +90,28 @@ export default function HeroSection() {
         )}>
           <h1 className={tw(
             headingClasses(),
-            'text-primary-900 mb-6'
+            'text-white mb-6'
           )}>
-            قاعة مافيرا
+            {hero.title}
             <span className={tw(
-              'block text-primary-600 text-3xl md:text-4xl lg:text-5xl mt-2'
+              'block text-primary-200 text-3xl md:text-4xl lg:text-5xl mt-2'
             )}>
-              Mavera Hall
+              {hero.subtitle}
             </span>
           </h1>
           
           <p className={tw(
             textClasses(),
-            'text-primary-700 mb-4 font-medium'
+            'text-white/90 mb-4 font-medium'
           )}>
-            حيث تتحقق الأحلام وتُصنع الذكريات
+            {hero.tagline}
           </p>
           
           <p className={tw(
             textClasses(),
-            'text-primary-600 mb-12 max-w-3xl mx-auto leading-relaxed'
+            'text-white/80 mb-12 max-w-3xl mx-auto leading-relaxed'
           )}>
-            اكتشف قاعة الأحداث الأكثر أناقة وفخامة في المدينة. مساحات واسعة، تصميم عصري، وخدمة استثنائية لجعل مناسبتك لا تُنسى.
+            {hero.description}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -111,11 +125,13 @@ export default function HeroSection() {
                   isActive: false,
                   isDisabled: false
                 }),
-                'group inline-flex items-center gap-3 text-lg px-8 py-4'
+                'group inline-flex items-center gap-3 text-lg px-8 py-4',
+                'bg-white text-primary-900 hover:bg-primary-50',
+                'border-2 border-white hover:border-primary-200'
               )}
-              aria-label="احجز قاعة مافيرا الآن"
+              aria-label={hero.bookNowAriaLabel}
             >
-              احجز الآن
+              {hero.bookNowButton}
               <Calendar className="w-5 h-5 group-hover:scale-110 transition-transform" />
             </Link>
             
@@ -124,13 +140,13 @@ export default function HeroSection() {
               onClick={handleGalleryClick}
               className={tw(
                 'inline-flex items-center gap-3',
-                'text-primary-700 hover:text-primary-900',
+                'text-white hover:text-primary-200',
                 'font-semibold text-lg group transition-colors',
-                'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2'
+                'focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent'
               )}
-              aria-label="استكشف معرض صور قاعة مافيرا"
+              aria-label={hero.exploreGalleryAriaLabel}
             >
-              استكشف المعرض
+              {hero.exploreGalleryButton}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -141,21 +157,21 @@ export default function HeroSection() {
       <div 
         className={tw(
           'absolute top-20 left-10 w-20 h-20',
-          'bg-primary-200 rounded-full opacity-60 animate-pulse'
+          'bg-white/20 rounded-full opacity-60 animate-pulse'
         )} 
         aria-hidden="true"
       ></div>
       <div 
         className={tw(
           'absolute bottom-20 right-10 w-16 h-16',
-          'bg-secondary-200 rounded-full opacity-60 animate-pulse delay-1000'
+          'bg-primary-200/30 rounded-full opacity-60 animate-pulse delay-1000'
         )} 
         aria-hidden="true"
       ></div>
       <div 
         className={tw(
           'absolute top-1/2 left-5 w-12 h-12',
-          'bg-primary-300 rounded-full opacity-40 animate-bounce'
+          'bg-white/30 rounded-full opacity-40 animate-bounce'
         )} 
         aria-hidden="true"
       ></div>

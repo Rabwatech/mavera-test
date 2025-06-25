@@ -6,6 +6,7 @@ import { withErrorHandling } from '@/lib/errors'
 import { validateContactForm } from '@/lib/validation'
 import { CONTACT_INFO } from '@/lib/constants'
 import { Phone, Mail, MapPin, Clock } from 'lucide-react'
+import { useΦTranslations } from '@/hooks/useΦTranslations'
 
 /**
  * Contact section component with contact information and message form
@@ -23,6 +24,12 @@ export function ContactSection() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   
   const logger = getLogger()
+
+  /**
+   * Translation hook for accessing multilingual content
+   * Provides language-specific contact information
+   */
+  const { contact } = useΦTranslations()
 
   /**
    * Logs component mounting for analytics
@@ -138,13 +145,13 @@ export function ContactSection() {
       <div className="container-custom">
         <header className="text-center mb-16">
           <h2 id="contact-heading" className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
-            تواصل معنا
+            {contact.title}
             <span className="block text-primary-600 text-2xl md:text-3xl mt-2 font-medium">
-              Get In Touch
+              {contact.subtitle}
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            نحن هنا لمساعدتك في تحقيق حلمك وجعل مناسبتك لا تُنسى
+            {contact.description}
           </p>
         </header>
         

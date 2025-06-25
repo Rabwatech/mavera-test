@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { getLogger } from '@/lib/logger'
 import { withErrorHandling } from '@/lib/errors'
-import { HALL_STATISTICS } from '@/lib/constants'
+import { useΦTranslations } from '@/hooks/useΦTranslations'
 
 /**
  * About section component showcasing Mavera Hall's story and achievements
@@ -11,6 +11,12 @@ import { HALL_STATISTICS } from '@/lib/constants'
  */
 export function AboutSection() {
   const logger = getLogger()
+
+  /**
+   * Translation hook for accessing multilingual content
+   * Provides language-specific text and statistics
+   */
+  const { about } = useΦTranslations()
 
   /**
    * Logs component mounting for analytics
@@ -34,29 +40,27 @@ export function AboutSection() {
           <div className="space-y-8">
             <header>
               <h2 id="about-heading" className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
-                عن قاعة مافيرا
+                {about.title}
                 <span className="block text-primary-600 text-2xl md:text-3xl mt-2 font-medium">
-                  About Mavera Hall
+                  {about.subtitle}
                 </span>
               </h2>
             </header>
             
             <div className="prose prose-lg text-gray-700 space-y-6">
               <p className="text-xl leading-relaxed">
-                تقع قاعة مافيرا في قلب الأناقة، وتقف كشاهد على الجمال الخالد والتصميم المتطور. 
-                كانت قاعتنا خلفية لعدد لا يحصى من اللحظات السحرية، من التجمعات الحميمة إلى الاحتفالات الكبرى.
+                {about.description1}
               </p>
               
               <p className="text-lg leading-relaxed">
-                مع أكثر من عقد من الخبرة في إنشاء الأحداث التي لا تُنسى، يضمن فريقنا المتفاني أن كل التفاصيل 
-                مثالية، من الاستشارة الأولى إلى الوداع الأخير. نحن نؤمن أن كل حدث يستحق أن يكون استثنائياً.
+                {about.description2}
               </p>
             </div>
             
             {/* Statistics Grid */}
             <div className="grid grid-cols-2 gap-8 pt-8">
-              {HALL_STATISTICS.map((stat, index) => (
-                <div key={index} className="text-center lg:text-left">
+              {Object.entries(about.statistics).map(([key, stat]: [string, any]) => (
+                <div key={key} className="text-center lg:text-left">
                   <h3 className="text-4xl md:text-5xl font-bold text-primary-600 mb-2">
                     {stat.value}
                   </h3>
@@ -82,7 +86,7 @@ export function AboutSection() {
                       <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <p className="text-lg font-medium">صورة قاعة مافيرا</p>
+                  <p className="text-lg font-medium">{about.imageAlt}</p>
                 </div>
               </div>
             </div>

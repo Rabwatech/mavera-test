@@ -7,6 +7,7 @@ import { GALLERY_IMAGES } from '@/lib/constants'
 import { GalleryImageCategory, GalleryImage } from '@/types'
 import { Eye, Download, Heart, Share2 } from 'lucide-react'
 import { HydrationSafeDate } from '@/components/ui/HydrationSafeDate'
+import { useΦTranslations } from '@/hooks/useΦTranslations'
 
 /**
  * Gallery section component displaying hall images and event photos
@@ -16,6 +17,12 @@ export function GallerySection() {
   const [selectedCategory, setSelectedCategory] = useState<GalleryImageCategory | 'all'>('all')
   const [likedImages, setLikedImages] = useState<Set<string>>(new Set())
   const logger = getLogger()
+
+  /**
+   * Translation hook for accessing multilingual content
+   * Provides language-specific gallery information
+   */
+  const { gallery } = useΦTranslations()
 
   /**
    * Logs component mounting for analytics
@@ -95,13 +102,13 @@ export function GallerySection() {
       <div className="container-custom">
         <header className="text-center mb-16">
           <h2 id="gallery-heading" className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
-            معرض الصور
+            {gallery.title}
             <span className="block text-primary-600 text-2xl md:text-3xl mt-2 font-medium">
-              Gallery
+              {gallery.subtitle}
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            استكشف جمال قاعة مافيرا من خلال مجموعة مختارة من أفضل الصور
+            {gallery.description}
           </p>
         </header>
         
@@ -109,11 +116,11 @@ export function GallerySection() {
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((category) => {
             const categoryLabels: Record<string, string> = {
-              all: 'الكل',
-              weddings: 'حفلات الزفاف',
-              corporate_events: 'المؤتمرات',
-              birthday_parties: 'الحفلات',
-              venue_interior: 'القاعة'
+              all: gallery.categories.all,
+              weddings: gallery.categories.weddings,
+              corporate_events: gallery.categories.corporate,
+              birthday_parties: gallery.categories.parties,
+              venue_interior: gallery.categories.seminars
             }
             
             return (
@@ -199,58 +206,47 @@ export function GallerySection() {
                   {image.description}
                 </p>
                 <div className="flex items-center justify-between text-xs text-gray-500">
-                  <span className="bg-primary-50 text-primary-600 px-2 py-1 rounded-full">
-                    {image.category === 'weddings' ? 'حفل زفاف' :
-                     image.category === 'corporate_events' ? 'مؤتمر' :
-                     image.category === 'birthday_parties' ? 'حفلة' :
-                     image.category === 'venue_interior' ? 'القاعة' : String(image.category)}
+                  <span>
+                    {image.eventDate && (
+                      <HydrationSafeDate date={image.eventDate} format="short" />
+                    )}
                   </span>
-                  {image.eventDate && (
-                    <HydrationSafeDate 
-                      date={image.eventDate}
-                      locale="ar-SA"
-                      format="numeric"
-                    />
-                  )}
+                  <span>{image.category}</span>
                 </div>
               </div>
             </article>
           ))}
         </div>
         
-        {/* No Results Message */}
-        {filteredImages.length === 0 && (
-          <div className="text-center py-16">
-            <p className="text-gray-500 text-lg">
-              لا توجد صور في هذه الفئة حالياً
-            </p>
+        {/* Load More Button */}
+        {filteredImages.length > 0 && (
+          <div className="text-center mt-12">
+            <button 
+              className="btn-secondary px-8 py-3"
+              onClick={() => handleImageAction('load_more', 'gallery', 'Load More Images')}
+              aria-label={gallery.loadMore}
+            >
+              {gallery.loadMore}
+            </button>
           </div>
         )}
         
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <p className="text-lg text-gray-600 mb-6">
-            هل تريد أن تكون صورك التالية في معرضنا؟
-          </p>
-          <button
-            className="btn-primary px-8 py-4 text-lg"
-            onClick={() => {
-              logger.userAction(
-                'gallery_cta_click',
-                'anonymous',
-                'button',
-                'gallery-book-now',
-                {
-                  component: 'GallerySection',
-                  timestamp: new Date().toISOString()
-                }
-              )
-            }}
-            aria-label="احجز مناسبتك الآن"
-          >
-            احجز مناسبتك الآن
-          </button>
-        </div>
+        {/* Empty State */}
+        {filteredImages.length === 0 && (
+          <div className="text-center py-16">
+            <div className="w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
+              <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              {gallery.noImages}
+            </h3>
+            <p className="text-gray-600">
+              {gallery.description}
+            </p>
+          </div>
+        )}
       </div>
     </section>
   )

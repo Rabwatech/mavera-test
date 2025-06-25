@@ -43,7 +43,7 @@ export default function HomePage() {
   }, [trackPageView])
 
   return (
-    <main role="main" className="min-h-screen">
+    <main role="main">
       {/* Hero Section - Primary landing area */}
       <HeroSection />
       

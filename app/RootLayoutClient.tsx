@@ -1,6 +1,7 @@
 'use client'
 
 import { useΦApplicationInitialization } from '@/hooks/useΦApplicationInitialization'
+import { LanguageProvider } from '@/hooks/useΦLanguageContext'
 import Navbar from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { QueryProvider } from '@/components/providers/QueryProvider'
@@ -25,18 +26,20 @@ export function RootLayoutClient({ children }: { children: React.ReactNode }) {
 
   return (
     <QueryProvider>
-      <div className="min-h-screen flex flex-col bg-white">
-        {/* Main Navigation */}
-        <Navbar />
-        
-        {/* Main Content Area */}
-        <main className="flex-1" role="main">
-          {children}
-        </main>
-        
-        {/* Site Footer */}
-        <Footer />
-      </div>
+      <LanguageProvider defaultLanguage="ar">
+        <div className="min-h-screen flex flex-col bg-white">
+          {/* Main Navigation */}
+          <Navbar />
+          
+          {/* Main Content Area */}
+          <main className="flex-1" role="main">
+            {children}
+          </main>
+          
+          {/* Site Footer */}
+          <Footer />
+        </div>
+      </LanguageProvider>
     </QueryProvider>
   )
 }

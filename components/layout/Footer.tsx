@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { Facebook, Instagram, Twitter, Phone, Mail, MapPin, Clock } from 'lucide-react'
 import { getLogger } from '@/lib/logger'
 import { withErrorHandling } from '@/lib/errors'
-import { CONTACT_INFO, NAVIGATION_ITEMS, HALL_SERVICES } from '@/lib/constants'
+import { useΦTranslations } from '@/hooks/useΦTranslations'
+import { useΦLanguageContext } from '@/hooks/useΦLanguageContext'
 
 /**
  * Footer component providing site navigation, contact information, and social links
@@ -13,6 +14,18 @@ import { CONTACT_INFO, NAVIGATION_ITEMS, HALL_SERVICES } from '@/lib/constants'
  */
 export function Footer() {
   const logger = getLogger()
+
+  /**
+   * Translation hook for accessing multilingual content
+   * Provides language-specific footer information
+   */
+  const { footer, common } = useΦTranslations()
+
+  /**
+   * Language context for navigation items
+   * Provides language-specific navigation
+   */
+  const { navigationItems } = useΦLanguageContext()
 
   /**
    * Logs component mounting for analytics
@@ -82,15 +95,6 @@ export function Footer() {
     )
   })
 
-  // Get contact information from constants
-  const phoneInfo = CONTACT_INFO.find(info => info.type === 'phone')
-  const emailInfo = CONTACT_INFO.find(info => info.type === 'email')
-  const addressInfo = CONTACT_INFO.find(info => info.type === 'address')
-  const hoursInfo = CONTACT_INFO.find(info => info.type === 'hours')
-
-  // Get main services for footer display
-  const mainServices = HALL_SERVICES.slice(0, 4)
-
   return (
     <footer className="bg-primary-900 text-white py-16" role="contentinfo">
       <div className="container-custom">
@@ -104,7 +108,7 @@ export function Footer() {
               </span>
             </h3>
             <p className="text-primary-100 mb-6 leading-relaxed">
-              وجهتك المثالية للمناسبات والاحتفالات التي لا تُنسى في أجواء فاخرة ومميزة
+              {footer.description}
             </p>
             <div className="flex space-x-4 space-x-reverse">
               <Link 
@@ -143,13 +147,10 @@ export function Footer() {
           {/* Quick Links */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-white">
-              روابط سريعة
-              <span className="block text-sm font-medium text-primary-200 mt-1">
-                Quick Links
-              </span>
+              {footer.quickLinks}
             </h4>
             <ul className="space-y-3">
-              {NAVIGATION_ITEMS.map((item) => (
+              {navigationItems.map((item) => (
                 <li key={item.href}>
                   <Link 
                     href={item.href} 
@@ -167,105 +168,129 @@ export function Footer() {
           {/* Services */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-white">
-              خدماتنا
-              <span className="block text-sm font-medium text-primary-200 mt-1">
-                Our Services
-              </span>
+              {footer.services}
             </h4>
             <ul className="space-y-3">
-              {mainServices.map((service, index) => (
-                <li key={index}>
-                  <Link 
-                    href={`#services`} 
-                    className="text-primary-200 hover:text-white transition-colors hover:underline"
-                    onClick={() => handleFooterLinkClick('service', index.toString(), service.title)}
-                    aria-label={`تعرف على خدمة ${service.title}`}
-                  >
-                    {service.title}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link 
+                  href="/services" 
+                  className="text-primary-200 hover:text-white transition-colors hover:underline"
+                  onClick={() => handleFooterLinkClick('service', 'weddings', 'حفلات الزفاف')}
+                  aria-label="تعرف على خدمات حفلات الزفاف"
+                >
+                  حفلات الزفاف
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/services" 
+                  className="text-primary-200 hover:text-white transition-colors hover:underline"
+                  onClick={() => handleFooterLinkClick('service', 'corporate', 'الفعاليات المؤسسية')}
+                  aria-label="تعرف على خدمات الفعاليات المؤسسية"
+                >
+                  الفعاليات المؤسسية
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/services" 
+                  className="text-primary-200 hover:text-white transition-colors hover:underline"
+                  onClick={() => handleFooterLinkClick('service', 'parties', 'الحفلات الخاصة')}
+                  aria-label="تعرف على خدمات الحفلات الخاصة"
+                >
+                  الحفلات الخاصة
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/services" 
+                  className="text-primary-200 hover:text-white transition-colors hover:underline"
+                  onClick={() => handleFooterLinkClick('service', 'seminars', 'الندوات والمؤتمرات')}
+                  aria-label="تعرف على خدمات الندوات والمؤتمرات"
+                >
+                  الندوات والمؤتمرات
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-white">
-              معلومات التواصل
-              <span className="block text-sm font-medium text-primary-200 mt-1">
-                Contact Info
-              </span>
+              {footer.contact}
             </h4>
             <div className="space-y-4">
-              {phoneInfo && (
-                <div className="flex items-center space-x-3 space-x-reverse">
-                  <Phone className="w-4 h-4 text-primary-300 flex-shrink-0" />
-                  <Link
-                    href={`tel:${phoneInfo.value}`}
+              <div className="flex items-start space-x-3 space-x-reverse">
+                <Phone className="w-5 h-5 text-primary-200 mt-1 flex-shrink-0" />
+                <div>
+                  <a
+                    href="tel:+966111234567"
                     className="text-primary-200 hover:text-white transition-colors"
-                    onClick={() => handleContactClick('phone', phoneInfo.value)}
-                    aria-label={`اتصل بنا على ${phoneInfo.value}`}
+                    onClick={() => handleContactClick('phone', '+966 11 123 4567')}
+                    aria-label="اتصل بنا على الهاتف"
                   >
-                    {phoneInfo.value}
-                  </Link>
+                    +966 11 123 4567
+                  </a>
                 </div>
-              )}
+              </div>
               
-              {emailInfo && (
-                <div className="flex items-center space-x-3 space-x-reverse">
-                  <Mail className="w-4 h-4 text-primary-300 flex-shrink-0" />
-                  <Link
-                    href={`mailto:${emailInfo.value}`}
+              <div className="flex items-start space-x-3 space-x-reverse">
+                <Mail className="w-5 h-5 text-primary-200 mt-1 flex-shrink-0" />
+                <div>
+                  <a
+                    href="mailto:info@maverahall.com"
                     className="text-primary-200 hover:text-white transition-colors"
-                    onClick={() => handleContactClick('email', emailInfo.value)}
-                    aria-label={`راسلنا على ${emailInfo.value}`}
+                    onClick={() => handleContactClick('email', 'info@maverahall.com')}
+                    aria-label="أرسل إيميل إلينا"
                   >
-                    {emailInfo.value}
-                  </Link>
+                    info@maverahall.com
+                  </a>
                 </div>
-              )}
+              </div>
               
-              {addressInfo && (
-                <div className="flex items-start space-x-3 space-x-reverse">
-                  <MapPin className="w-4 h-4 text-primary-300 flex-shrink-0 mt-0.5" />
-                  <span className="text-primary-200 leading-relaxed">
-                    {addressInfo.value}
-                  </span>
+              <div className="flex items-start space-x-3 space-x-reverse">
+                <MapPin className="w-5 h-5 text-primary-200 mt-1 flex-shrink-0" />
+                <div>
+                  <p className="text-primary-200">
+                    شارع الملك فهد، الرياض، المملكة العربية السعودية
+                  </p>
                 </div>
-              )}
+              </div>
               
-              {hoursInfo && (
-                <div className="flex items-start space-x-3 space-x-reverse">
-                  <Clock className="w-4 h-4 text-primary-300 flex-shrink-0 mt-0.5" />
-                  <span className="text-primary-200 leading-relaxed">
-                    {hoursInfo.value}
-                  </span>
+              <div className="flex items-start space-x-3 space-x-reverse">
+                <Clock className="w-5 h-5 text-primary-200 mt-1 flex-shrink-0" />
+                <div>
+                  <p className="text-primary-200">
+                    الأحد - الخميس: 8:00 ص - 10:00 م
+                  </p>
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Footer Bottom */}
+        
+        {/* Bottom Section */}
         <div className="border-t border-primary-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-primary-200 text-center md:text-right">
-              © 2024 قاعة مافيرا. جميع الحقوق محفوظة.
+            <p className="text-primary-200 text-sm">
+              {footer.copyright}
             </p>
-            <div className="flex space-x-6 space-x-reverse text-sm">
+            <div className="flex space-x-6 space-x-reverse">
               <Link 
                 href="/privacy" 
-                className="text-primary-200 hover:text-white transition-colors"
-                onClick={() => handleFooterLinkClick('legal', '/privacy', 'سياسة الخصوصية')}
+                className="text-primary-200 hover:text-white transition-colors text-sm"
+                onClick={() => handleFooterLinkClick('legal', 'privacy', footer.privacyPolicy)}
+                aria-label={footer.privacyPolicy}
               >
-                سياسة الخصوصية
+                {footer.privacyPolicy}
               </Link>
               <Link 
                 href="/terms" 
-                className="text-primary-200 hover:text-white transition-colors"
-                onClick={() => handleFooterLinkClick('legal', '/terms', 'شروط الاستخدام')}
+                className="text-primary-200 hover:text-white transition-colors text-sm"
+                onClick={() => handleFooterLinkClick('legal', 'terms', footer.termsOfService)}
+                aria-label={footer.termsOfService}
               >
-                شروط الاستخدام
+                {footer.termsOfService}
               </Link>
             </div>
           </div>

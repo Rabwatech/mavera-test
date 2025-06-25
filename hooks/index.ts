@@ -11,4 +11,15 @@ export { useΦApplicationInitialization } from './useΦApplicationInitialization
 export { useΨNavigationAnalytics } from './useΨNavigationAnalytics'
 
 // Utility hooks
-export { useΩHydrationSafeDate, formatDateHydrationSafe } from './useΩHydrationSafeDate' 
+export { useΩHydrationSafeDate, formatDateHydrationSafe } from './useΩHydrationSafeDate'
+
+// Language context hooks
+export { useΦLanguageContext, useΦLanguageSwitcher, LanguageProvider } from './useΦLanguageContext'
+
+// Translation hooks
+export { 
+  useΦTranslations, 
+  useΦCommonTranslations, 
+  useΦPageTranslations, 
+  useΦSectionTranslations 
+} from './useΦTranslations' 

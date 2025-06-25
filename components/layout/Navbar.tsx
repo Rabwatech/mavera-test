@@ -3,13 +3,14 @@
 import { useState, useCallback } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
-import { NAVIGATION_ITEMS } from '@/lib/constants'
 import { useΨNavigationAnalytics } from '@/hooks/useΨNavigationAnalytics'
+import { useΦLanguageContext } from '@/hooks/useΦLanguageContext'
+import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
 import { tw, navLinkClasses, buttonClasses } from '@/utils/styling/tw'
 
 /**
  * Main navigation component for the application
- * Provides responsive navigation with mobile menu support
+ * Provides responsive navigation with mobile menu support and language switching
  * Uses custom hooks for analytics and follows Rabwa's clean code standards
  */
 export default function Navbar() {
@@ -24,6 +25,15 @@ export default function Navbar() {
     trackMobileMenuToggle, 
     trackBookingCTAClick 
   } = useΨNavigationAnalytics()
+
+  /**
+   * Language context hook for language switching functionality
+   * Provides current language state and switching capabilities
+   */
+  const { 
+    navigationItems, 
+    buttonLabels
+  } = useΦLanguageContext()
 
   /**
    * Toggles the mobile menu state with analytics tracking
@@ -103,7 +113,7 @@ export default function Navbar() {
             className="hidden md:flex space-x-8 space-x-reverse" 
             role="menubar"
           >
-            {NAVIGATION_ITEMS.map((link) => (
+            {navigationItems.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -121,8 +131,17 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Desktop Booking Button */}
-          <div className="hidden md:block">
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center space-x-4 space-x-reverse">
+            {/* Language Switcher */}
+            <LanguageSwitcher 
+              variant="button" 
+              size="md" 
+              showLabel={true} 
+              showFlag={true}
+            />
+
+            {/* Desktop Booking Button */}
             <Link 
               href="/booking" 
               className={buttonClasses({
@@ -132,9 +151,9 @@ export default function Navbar() {
                 isDisabled: false
               })}
               onClick={handleBookingClick}
-              aria-label="احجز قاعة مافيرا الآن"
+              aria-label={buttonLabels.bookNowAriaLabel}
             >
-              احجز الآن
+              {buttonLabels.bookNow}
             </Link>
           </div>
 
@@ -171,7 +190,7 @@ export default function Navbar() {
             aria-label="Mobile navigation menu"
           >
             <div className="flex flex-col space-y-4">
-              {NAVIGATION_ITEMS.map((link) => (
+              {navigationItems.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -190,6 +209,17 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
+              
+              {/* Mobile Language Switcher */}
+              <div className="px-4 py-2">
+                <LanguageSwitcher 
+                  variant="button" 
+                  size="md" 
+                  showLabel={true} 
+                  showFlag={true}
+                />
+              </div>
+              
               <Link
                 href="/booking"
                 className={tw(
@@ -203,9 +233,9 @@ export default function Navbar() {
                 )}
                 onClick={handleBookingClick}
                 role="menuitem"
-                aria-label="احجز قاعة مافيرا الآن"
+                aria-label={buttonLabels.bookNowAriaLabel}
               >
-                احجز الآن
+                {buttonLabels.bookNow}
               </Link>
             </div>
           </div>

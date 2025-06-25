@@ -88,35 +88,71 @@ export const NAVIGATION_MENU_ITEMS = [
 ] as const;
 
 /**
- * Navigation menu items for the main navbar
+ * Language-specific navigation items
+ * Provides navigation labels in different languages
  */
-export const NAVIGATION_ITEMS: NavigationItem[] = [
-  { 
-    href: '/', 
-    label: 'الرئيسية',
-    ariaLabel: 'الصفحة الرئيسية لقاعة مافيرا'
-  },
-  { 
-    href: '/about', 
-    label: 'من نحن',
-    ariaLabel: 'معلومات عن قاعة مافيرا'
-  },
-  { 
-    href: '/services', 
-    label: 'خدماتنا',
-    ariaLabel: 'خدمات قاعة مافيرا'
-  },
-  { 
-    href: '/gallery', 
-    label: 'المعرض',
-    ariaLabel: 'معرض صور قاعة مافيرا'
-  },
-  { 
-    href: '/contact', 
-    label: 'اتصل بنا',
-    ariaLabel: 'تواصل مع قاعة مافيرا'
-  },
-]
+export const NAVIGATION_ITEMS_BY_LANGUAGE = {
+  ar: [
+    { 
+      href: '/', 
+      label: 'الرئيسية',
+      ariaLabel: 'الصفحة الرئيسية لقاعة مافيرا'
+    },
+    { 
+      href: '/about', 
+      label: 'من نحن',
+      ariaLabel: 'معلومات عن قاعة مافيرا'
+    },
+    { 
+      href: '/services', 
+      label: 'خدماتنا',
+      ariaLabel: 'خدمات قاعة مافيرا'
+    },
+    { 
+      href: '/gallery', 
+      label: 'المعرض',
+      ariaLabel: 'معرض صور قاعة مافيرا'
+    },
+    { 
+      href: '/contact', 
+      label: 'اتصل بنا',
+      ariaLabel: 'تواصل مع قاعة مافيرا'
+    },
+  ],
+  en: [
+    { 
+      href: '/', 
+      label: 'Home',
+      ariaLabel: 'Mavera Hall Homepage'
+    },
+    { 
+      href: '/about', 
+      label: 'About',
+      ariaLabel: 'About Mavera Hall'
+    },
+    { 
+      href: '/services', 
+      label: 'Services',
+      ariaLabel: 'Mavera Hall Services'
+    },
+    { 
+      href: '/gallery', 
+      label: 'Gallery',
+      ariaLabel: 'Mavera Hall Photo Gallery'
+    },
+    { 
+      href: '/contact', 
+      label: 'Contact',
+      ariaLabel: 'Contact Mavera Hall'
+    },
+  ]
+}
+
+/**
+ * Navigation menu items for the main navbar
+ * Defaults to Arabic language
+ */
+export const NAVIGATION_ITEMS: NavigationItem[] = NAVIGATION_ITEMS_BY_LANGUAGE.ar
 
 /**
  * Hall statistics for the about section
@@ -646,3 +682,46 @@ export const ERROR_MESSAGES = {
     timeoutError: 'Request timed out. Please try again',
   },
 } as const;
+
+// ============================================================================
+// LANGUAGE AND INTERNATIONALIZATION CONSTANTS
+// ============================================================================
+
+/**
+ * Supported languages for the application
+ * Provides language codes and display names
+ */
+export const SUPPORTED_LANGUAGES = [
+  {
+    code: 'ar',
+    name: 'العربية',
+    englishName: 'Arabic',
+    direction: 'rtl',
+    flag: '🇸🇦'
+  },
+  {
+    code: 'en',
+    name: 'English',
+    englishName: 'English',
+    direction: 'ltr',
+    flag: '🇺🇸'
+  }
+] as const
+
+/**
+ * Language-specific button labels
+ */
+export const BUTTON_LABELS_BY_LANGUAGE = {
+  ar: {
+    bookNow: 'احجز الآن',
+    bookNowAriaLabel: 'احجز قاعة مافيرا الآن',
+    changeLanguage: 'تغيير اللغة',
+    changeLanguageAriaLabel: 'تغيير لغة الموقع'
+  },
+  en: {
+    bookNow: 'Book Now',
+    bookNowAriaLabel: 'Book Mavera Hall Now',
+    changeLanguage: 'Language',
+    changeLanguageAriaLabel: 'Change website language'
+  }
+} as const

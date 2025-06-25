@@ -3,8 +3,8 @@
 import { useEffect } from 'react'
 import { getLogger } from '@/lib/logger'
 import { withErrorHandling } from '@/lib/errors'
-import { TESTIMONIALS } from '@/lib/constants'
 import { Star } from 'lucide-react'
+import { useΦTranslations } from '@/hooks/useΦTranslations'
 
 /**
  * Testimonials section component displaying client reviews and ratings
@@ -14,13 +14,19 @@ export function TestimonialsSection() {
   const logger = getLogger()
 
   /**
+   * Translation hook for accessing multilingual content
+   * Provides language-specific testimonial information
+   */
+  const { testimonials } = useΦTranslations()
+
+  /**
    * Logs component mounting for analytics
    */
   useEffect(() => {
     const logComponentMount = withErrorHandling(async () => {
       logger.info('Testimonials section component mounted', {
         component: 'TestimonialsSection',
-        testimonialsCount: TESTIMONIALS.length,
+        testimonialsCount: testimonials.testimonials.length,
         timestamp: new Date().toISOString()
       }, 'user_action')
     })
@@ -73,29 +79,29 @@ export function TestimonialsSection() {
       <div className="container-custom">
         <header className="text-center mb-16">
           <h2 id="testimonials-heading" className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">
-            آراء عملائنا
+            {testimonials.title}
             <span className="block text-primary-600 text-2xl md:text-3xl mt-2 font-medium">
-              What Our Clients Say
+              {testimonials.subtitle}
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            اكتشف تجارب عملائنا الرائعة ولماذا يختارون قاعة مافيرا لمناسباتهم المميزة
+            {testimonials.description}
           </p>
         </header>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {TESTIMONIALS.map((testimonial) => (
+          {testimonials.testimonials.map((testimonial: any, index: number) => (
             <article
-              key={testimonial.id}
+              key={index}
               className="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
-              onClick={() => handleTestimonialClick(testimonial.id, testimonial.clientName)}
+              onClick={() => handleTestimonialClick(`testimonial-${index}`, testimonial.name)}
               tabIndex={0}
               role="button"
-              aria-label={`اقرأ تقييم ${testimonial.clientName}`}
+              aria-label={`اقرأ تقييم ${testimonial.name}`}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault()
-                  handleTestimonialClick(testimonial.id, testimonial.clientName)
+                  handleTestimonialClick(`testimonial-${index}`, testimonial.name)
                 }
               }}
             >
@@ -106,28 +112,23 @@ export function TestimonialsSection() {
               
               {/* Testimonial Text */}
               <blockquote className="text-gray-700 text-lg leading-relaxed mb-6 italic">
-                "{testimonial.text}"
+                "{testimonial.content}"
               </blockquote>
               
               {/* Client Info */}
               <footer className="flex items-center">
                 <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                   <span className="text-primary-600 font-semibold text-lg">
-                    {testimonial.clientName.charAt(0)}
+                    {testimonial.name.charAt(0)}
                   </span>
                 </div>
                 <div className="flex-1">
                   <cite className="font-semibold text-gray-900 not-italic">
-                    {testimonial.clientName}
+                    {testimonial.name}
                   </cite>
                   <p className="text-sm text-gray-600">
-                    {testimonial.eventType}
+                    {testimonial.role}
                   </p>
-                  {testimonial.eventDate && (
-                    <p className="text-xs text-gray-500">
-                      {testimonial.eventDate}
-                    </p>
-                  )}
                 </div>
               </footer>
             </article>
