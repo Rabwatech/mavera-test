@@ -1,0 +1,1059 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Premium Wedding Agency Design System - $100K Level
+
+## 🎨 Design Philosophy: Luxurious Romance
+**Ultra-Premium Aesthetic**: A breathtaking design that radiates luxury, sophistication, and emotional depth. Every pixel crafted to create an unforgettable experience that justifies premium pricing.
+
+## 🌈 Advanced Color System
+
+### Primary Palette
+```css
+/* Signature Colors */
+--emerald-deep: #1a4d3a;        /* Primary brand - deep forest */
+--emerald-rich: #2d5a4a;        /* Main interactive elements */
+--emerald-soft: #7a9b8a;        /* Secondary accents */
+--emerald-whisper: #e8f2ed;     /* Subtle backgrounds */
+
+/* Luxury Metallics */
+--gold-champagne: #d4af37;      /* Premium accents */
+--gold-rose: #e8b4a0;          /* Warm highlights */
+--silver-sage: #b8c5c1;        /* Elegant neutrals */
+
+/* Sophisticated Neutrals */
+--charcoal-rich: #1e1e1e;       /* Premium text */
+--charcoal-mid: #2a2a2a;        /* Secondary text */
+--ash-light: #f7f7f7;          /* Clean backgrounds */
+--pearl-white: #fefffe;         /* Pure elements */
+```
+
+### Emotional Color Mapping
+- **Trust & Elegance**: Deep emerald tones
+- **Luxury & Celebration**: Champagne gold accents
+- **Romance & Warmth**: Rose gold highlights
+- **Sophistication**: Rich charcoal grays
+
+## ✨ Typography Hierarchy - Premium Level
+
+### Font Stack
+```css
+/* Primary: Luxury Serif */
+--font-serif: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+
+/* Secondary: Modern Sans */
+--font-sans: "Inter", "SF Pro Display", system-ui, sans-serif;
+
+/* Accent: Sophisticated Script */
+--font-script: "Dancing Script", "Allura", cursive;
+```
+
+### Type Scale - Cinematic Sizing
+```css
+/* Hero & Display */
+.hero-title {
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  background: linear-gradient(135deg, #1a4d3a 0%, #2d5a4a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-hero {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+/* Body & Content */
+.body-luxe {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+/* Decorative Elements */
+.script-accent {
+  font-family: var(--font-script);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--gold-champagne);
+}
+```
+
+## 🎯 Ultra-Premium Components
+
+### 💎 Luxury Buttons
+```css
+/* Primary: Emerald Elegance */
+.btn-emerald-luxury {
+  position: relative;
+  background: linear-gradient(135deg, #1a4d3a 0%, #2d5a4a 100%);
+  color: white;
+  padding: 1rem 2.5rem;
+  border: none;
+  font: 600 0.875rem var(--font-sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 
+    0 8px 25px rgba(29, 77, 58, 0.3),
+    0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-emerald-luxury::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s;
+}
+
+.btn-emerald-luxury:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 15px 35px rgba(29, 77, 58, 0.4),
+    0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-emerald-luxury:hover::before {
+  left: 100%;
+}
+
+/* Gold Accent Button */
+.btn-gold-luxury {
+  background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+  color: #1a4d3a;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* Glass Morphism Button */
+.btn-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+```
+
+### 🃏 Premium Cards
+```css
+/* Hero Service Card */
+.card-hero-service {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.08),
+    0 8px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+.card-hero-service::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #d4af37 0%, #2d5a4a 100%);
+}
+
+.card-hero-service:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.12),
+    0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Premium Portfolio Card */
+.card-portfolio-premium {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-portfolio-premium img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.card-portfolio-premium::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(26, 77, 58, 0.8) 0%,
+    rgba(212, 175, 55, 0.6) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card-portfolio-premium:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+.card-portfolio-premium:hover::after {
+  opacity: 1;
+}
+
+.card-portfolio-premium:hover img {
+  transform: scale(1.1);
+}
+
+/* Testimonial Card - Luxury */
+.card-testimonial-luxury {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 24px;
+  padding: 2.5rem;
+  margin: 2rem 0;
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.06),
+    0 8px 20px rgba(0, 0, 0, 0.04);
+}
+
+.card-testimonial-luxury::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 30px;
+  font-size: 6rem;
+  color: var(--gold-champagne);
+  font-family: var(--font-serif);
+  opacity: 0.3;
+}
+```
+
+### 🎭 Advanced Form Elements
+```css
+/* Luxury Input Fields */
+.input-luxury {
+  position: relative;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.input-luxury input,
+.input-luxury textarea {
+  width: 100%;
+  padding: 1.25rem 1rem 1rem;
+  border: 2px solid #e8e8e8;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  font: 1rem var(--font-sans);
+  color: var(--charcoal-rich);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(10px);
+}
+
+.input-luxury input:focus,
+.input-luxury textarea:focus {
+  outline: none;
+  border-color: var(--emerald-rich);
+  background: white;
+  box-shadow: 
+    0 0 0 4px rgba(45, 90, 74, 0.1),
+    0 8px 25px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.input-luxury label {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font: 1rem var(--font-sans);
+  color: #999;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.input-luxury input:focus + label,
+.input-luxury input:not(:placeholder-shown) + label {
+  top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--emerald-rich);
+  font-weight: 600;
+}
+```
+
+## 📱 Responsive Mastery - All Devices
+
+### 📱 Mobile (320px - 768px)
+```css
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+    line-height: 1.1;
+  }
+  
+  .btn-emerald-luxury {
+    width: 100%;
+    padding: 1.25rem;
+    font-size: 1rem;
+  }
+  
+  .card-hero-service {
+    padding: 2rem;
+    margin: 1rem;
+  }
+  
+  /* Mobile-first animations */
+  .mobile-fade-up {
+    animation: mobileSlideUp 0.8s ease-out;
+  }
+}
+
+@keyframes mobileSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+```
+
+### 📱 Tablet (768px - 1024px)
+```css
+@media (min-width: 768px) and (max-width: 1024px) {
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .btn-emerald-luxury {
+    padding: 1rem 2rem;
+    display: inline-block;
+    width: auto;
+  }
+}
+```
+
+### 💻 Desktop & Large Screens (1024px+)
+```css
+@media (min-width: 1024px) {
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  
+  /* Parallax effects for desktop */
+  .parallax-section {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* Advanced hover states */
+  .card-hero-service:hover {
+    transform: translateY(-12px) rotateX(5deg);
+  }
+}
+```
+
+### 🖥️ Ultra-Wide Screens (1920px+)
+```css
+@media (min-width: 1920px) {
+  .container-max {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  
+  .hero-title {
+    font-size: clamp(6rem, 12vw, 12rem);
+  }
+  
+  .grid-cards {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+  }
+}
+```
+
+## 🎬 Cinematic Animations
+
+### Advanced Scroll Animations
+```css
+/* Scroll-triggered animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animations */
+.stagger-item {
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+/* Luxury loading animation */
+@keyframes luxuryPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.loading-luxury {
+  animation: luxuryPulse 2s ease-in-out infinite;
+}
+```
+
+### Micro-Interactions
+```css
+/* Button micro-interactions */
+.btn-emerald-luxury:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Card hover micro-interactions */
+.card-hero-service:hover .card-icon {
+  transform: rotate(10deg) scale(1.1);
+  color: var(--gold-champagne);
+}
+
+/* Text reveal animation */
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal span {
+  display: inline-block;
+  animation: textSlideUp 0.8s ease-out forwards;
+  animation-delay: calc(var(--i) * 0.05s);
+}
+
+@keyframes textSlideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+```
+
+## 🎯 Performance & Accessibility
+
+### Optimized Loading
+```css
+/* Critical CSS for above-the-fold */
+.critical-load {
+  font-display: swap;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Lazy loading styles */
+.lazy-load {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.lazy-load.loaded {
+  opacity: 1;
+}
+```
+
+### Accessibility Excellence
+```css
+/* Focus states */
+.btn-emerald-luxury:focus-visible {
+  outline: 3px solid var(--gold-champagne);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn-emerald-luxury {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+## 🎨 Advanced Layout Systems
+
+### CSS Grid Mastery
+```css
+.grid-luxury {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(1rem, 4vw, 3rem);
+  padding: clamp(1rem, 5vw, 4rem);
+}
+
+/* Asymmetric grid for portfolio */
+.grid-portfolio {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 200px);
+  gap: 1rem;
+}
+
+.portfolio-item:nth-child(1) { grid-area: 1/1/3/3; }
+.portfolio-item:nth-child(2) { grid-area: 1/3/2/5; }
+.portfolio-item:nth-child(3) { grid-area: 1/5/3/7; }
+/* Continue pattern... */
+```
+
+## 🌍 نظام الترجمة والدعم متعدد اللغات
+
+### 📁 هيكل ملفات الترجمة
+```
+/locales/
+├── en/
+│   ├── common.json
+│   ├── navigation.json
+│   ├── homepage.json
+│   ├── about.json
+│   ├── services.json
+│   ├── portfolio.json
+│   ├── contact.json
+│   ├── blog.json
+│   └── forms.json
+└── ar/
+    ├── common.json
+    ├── navigation.json
+    ├── homepage.json
+    ├── about.json
+    ├── services.json
+    ├── portfolio.json
+    ├── contact.json
+    ├── blog.json
+    └── forms.json
+```
+
+### 📝 ملفات الترجمة العربية
+
+#### `/locales/ar/common.json`
+```json
+{
+  "buttons": {
+    "readMore": "اقرأ المزيد",
+    "contactUs": "تواصل معنا",
+    "bookNow": "احجز الآن",
+    "viewAll": "عرض الكل",
+    "getStarted": "ابدأ الآن",
+    "download": "تحميل",
+    "share": "مشاركة",
+    "close": "إغلاق",
+    "next": "التالي",
+    "previous": "السابق",
+    "submit": "إرسال",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "loading": "جاري التحميل...",
+    "viewPortfolio": "عرض أعمالنا"
+  },
+  "labels": {
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "message": "الرسالة",
+    "subject": "الموضوع",
+    "date": "التاريخ",
+    "time": "الوقت",
+    "location": "الموقع",
+    "budget": "الميزانية",
+    "guestCount": "عدد الضيوف"
+  },
+  "status": {
+    "success": "تم بنجاح",
+    "error": "حدث خطأ",
+    "pending": "في الانتظار",
+    "completed": "مكتمل",
+    "inProgress": "قيد التنفيذ"
+  },
+  "time": {
+    "years": "سنوات",
+    "months": "أشهر",
+    "weeks": "أسابيع",
+    "days": "أيام",
+    "hours": "ساعات",
+    "minutes": "دقائق"
+  }
+}
+```
+
+#### `/locales/ar/navigation.json`
+```json
+{
+  "mainMenu": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "services": "خدماتنا",
+    "portfolio": "أعمالنا",
+    "blog": "المدونة",
+    "contact": "تواصل معنا",
+    "packages": "باقاتنا"
+  },
+  "subMenu": {
+    "weddingPlanning": "تخطيط الأفراح",
+    "eventManagement": "إدارة الفعاليات", 
+    "decoration": "الديكور والتنسيق",
+    "photography": "التصوير الفوتوغرافي",
+    "videography": "التصوير السينمائي",
+    "catering": "خدمات الطعام",
+    "flowers": "تنسيق الزهور",
+    "music": "الموسيقى والترفيه"
+  },
+  "footer": {
+    "quickLinks": "روابط سريعة",
+    "services": "خدماتنا",
+    "support": "الدعم",
+    "legal": "قانوني",
+    "followUs": "تابعنا",
+    "newsletter": "النشرة الإخبارية",
+    "privacy": "سياسة الخصوصية",
+    "terms": "الشروط والأحكام"
+  }
+}
+```
+
+#### `/locales/ar/homepage.json`
+```json
+{
+  "hero": {
+    "title": "وكالتك لأفراح أحلامك",
+    "subtitle": "سنساعدك في كتابة قصة حبك",
+    "description": "نحن متخصصون في تنظيم أفراح استثنائية تعكس شخصيتكما وتخلد أجمل اللحظات",
+    "cta": "ابدأ رحلتك معنا",
+    "ctaSecondary": "استكشف أعمالنا"
+  },
+  "about": {
+    "badge": "من نحن",
+    "title": "نحن وكالة أفراح متخصصة",
+    "description": "منذ أكثر من عشر سنوات، نحن نحول أحلام العرسان إلى حقيقة ساحرة. فريقنا المتخصص يهتم بكل التفاصيل لضمان يوم مثالي لا يُنسى.",
+    "features": [
+      "خبرة أكثر من 10 سنوات",
+      "فريق متخصص ومحترف", 
+      "تنفيذ أكثر من 500 حفل زفاف",
+      "خدمة عملاء متميزة 24/7"
+    ],
+    "cta": "تعرف علينا أكثر"
+  },
+  "services": {
+    "badge": "خدماتنا",
+    "title": "خدمات شاملة لحفل أحلامك",
+    "subtitle": "نقدم جميع الخدمات التي تحتاجونها لجعل يومكم الخاص مثالياً",
+    "items": [
+      {
+        "title": "تخطيط كامل للحفل",
+        "description": "نخطط لكل تفصيلة من الألف إلى الياء"
+      },
+      {
+        "title": "التصوير الاحترافي",
+        "description": "نوثق أجمل اللحظات بعدسات احترافية"
+      },
+      {
+        "title": "الديكور والتنسيق",
+        "description": "نحول المكان إلى جنة من الجمال"
+      }
+    ]
+  },
+  "portfolio": {
+    "badge": "أعمالنا",
+    "title": "قصص حب حقيقية",
+    "subtitle": "اكتشفوا كيف حولنا أحلام العرسان إلى واقع ساحر",
+    "cta": "عرض جميع الأعمال"
+  },
+  "testimonials": {
+    "badge": "آراء العملاء",
+    "title": "ماذا يقول عملاؤنا",
+    "subtitle": "نفتخر بثقة عملائنا وسعادتهم"
+  },
+  "cta": {
+    "title": "جاهزون لبدء التخطيط؟",
+    "subtitle": "دعونا نجعل حفل زفافكم حلماً يتحقق",
+    "button": "احجز استشارة مجانية"
+  }
+}
+```
+
+#### `/locales/ar/services.json`
+```json
+{
+  "hero": {
+    "title": "خدماتنا المتميزة",
+    "subtitle": "نقدم حلولاً شاملة لجميع احتياجات حفل زفافكم"
+  },
+  "categories": {
+    "planning": {
+      "title": "التخطيط والتنظيم",
+      "services": [
+        {
+          "name": "التخطيط الكامل",
+          "description": "خدمة شاملة من البداية حتى النهاية",
+          "duration": "6-12 شهر",
+          "includes": [
+            "اختيار وحجز المكان",
+            "تنسيق جميع المورّدين",
+            "إدارة الميزانية",
+            "التنسيق يوم الحفل"
+          ]
+        },
+        {
+          "name": "التنسيق الجزئي",
+          "description": "مساعدة في جوانب محددة من التخطيط",
+          "duration": "2-4 أشهر",
+          "includes": [
+            "مراجعة الخطط الحالية",
+            "تنسيق المورّدين المختارين",
+            "إدارة يوم الحفل"
+          ]
+        }
+      ]
+    },
+    "design": {
+      "title": "التصميم والديكور",
+      "services": [
+        {
+          "name": "التصميم الكامل",
+          "description": "تصميم شامل لجميع عناصر الحفل",
+          "includes": [
+            "تصميم المفهوم العام",
+            "اختيار الألوان والثيم",
+            "تصميم مناطق الاستقبال",
+            "تنسيق المائدة الرئيسية"
+          ]
+        }
+      ]
+    },
+    "photography": {
+      "title": "التصوير والتوثيق",
+      "services": [
+        {
+          "name": "التصوير الفوتوغرافي",
+          "description": "توثيق احترافي لجميع لحظات الحفل",
+          "packages": [
+            "باقة أساسية - 6 ساعات",
+            "باقة شاملة - يوم كامل",
+            "باقة فاخرة - يومين"
+          ]
+        }
+      ]
+    }
+  },
+  "process": {
+    "title": "كيف نعمل",
+    "steps": [
+      {
+        "title": "الاستشارة الأولى",
+        "description": "نلتقي لفهم رؤيتكم وأحلامكم"
+      },
+      {
+        "title": "وضع الخطة",
+        "description": "نضع خطة مفصلة وميزانية واضحة"
+      },
+      {
+        "title": "التنفيذ",
+        "description": "ننفذ جميع التفاصيل بدقة واهتمام"
+      },
+      {
+        "title": "يوم الحفل",
+        "description": "ندير كل شيء ليكون يومكم مثالياً"
+      }
+    ]
+  }
+}
+```
+
+#### `/locales/ar/contact.json`
+```json
+{
+  "hero": {
+    "title": "تواصلوا معنا",
+    "subtitle": "نحن هنا لنساعدكم في تحقيق حلم الزفاف المثالي"
+  },
+  "form": {
+    "title": "أرسلوا لنا رسالة",
+    "subtitle": "املأوا النموذج وسنتواصل معكم خلال 24 ساعة",
+    "fields": {
+      "coupleNames": "أسماء العروسين",
+      "weddingDate": "تاريخ الزفاف المتوقع",
+      "guestCount": "عدد الضيوف المتوقع",
+      "budget": "الميزانية التقريبية",
+      "services": "الخدمات المطلوبة",
+      "venue": "هل لديكم مكان محدد؟",
+      "additionalInfo": "معلومات إضافية",
+      "contactPreference": "طريقة التواصل المفضلة"
+    },
+    "placeholders": {
+      "coupleNames": "أحمد وفاطمة",
+      "email": "ahmed@example.com",
+      "phone": "+966 50 123 4567",
+      "message": "أخبرونا عن رؤيتكم لحفل الزفاف...",
+      "guestCount": "100-150 ضيف",
+      "budget": "50,000 - 100,000 ريال"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب",
+      "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح",
+      "invalidPhone": "يرجى إدخال رقم هاتف صحيح",
+      "minLength": "يجب أن يحتوي على {{min}} أحرف على الأقل"
+    },
+    "success": "تم إرسال رسالتكم بنجاح! سنتواصل معكم قريباً.",
+    "error": "حدث خطأ في الإرسال. يرجى المحاولة مرة أخرى."
+  },
+  "info": {
+    "title": "معلومات التواصل",
+    "address": {
+      "title": "العنوان",
+      "value": "الرياض، حي الورود، شارع الملك فهد"
+    },
+    "phone": {
+      "title": "الهاتف",
+      "value": "+966 11 123 4567"
+    },
+    "email": {
+      "title": "البريد الإلكتروني",
+      "value": "info@weddingagency.sa"
+    },
+    "hours": {
+      "title": "ساعات العمل",
+      "value": "الأحد - الخميس: 9 صباحاً - 6 مساءً"
+    }
+  },
+  "consultation": {
+    "title": "احجزوا استشارة مجانية",
+    "subtitle": "جلسة مدتها ساعة لمناقشة أحلامكم وخططكم",
+    "benefits": [
+      "استشارة مجانية بالكامل",
+      "خطة أولية للحفل",
+      "تقدير تقريبي للتكلفة",
+      "نصائح من خبراء المجال"
+    ],
+    "cta": "احجز الآن"
+  }
+}
+```
+
+### 🎨 دعم RTL للعربية
+
+#### CSS للتخطيط من اليمين لليسار
+```css
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .btn-emerald-luxury {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+[dir="rtl"] .card-hero-service {
+  padding-right: 3rem;
+  padding-left: 2rem;
+}
+
+[dir="rtl"] .input-luxury label {
+  left: auto;
+  right: 1rem;
+}
+
+/* Arabic Typography */
+[dir="rtl"] .hero-title {
+  font-family: "Amiri", "Noto Sans Arabic", Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+[dir="rtl"] .body-luxe {
+  font-family: "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  line-height: 1.8;
+}
+
+/* RTL Animations */
+[dir="rtl"] .btn-emerald-luxury::before {
+  left: 100%;
+  right: auto;
+}
+
+[dir="rtl"] .btn-emerald-luxury:hover::before {
+  left: -100%;
+  right: auto;
+}
+
+/* Navigation RTL */
+[dir="rtl"] .nav-link::after {
+  right: 50%;
+  left: auto;
+  transform: translateX(50%);
+}
+
+/* Grid adjustments for RTL */
+[dir="rtl"] .grid-portfolio {
+  direction: rtl;
+}
+
+[dir="rtl"] .card-portfolio-premium {
+  transform-origin: right center;
+}
+```
+
+### 🔧 إعداد نظام الترجمة
+
+#### JavaScript لإدارة اللغات
+```javascript
+// Language Manager
+class LanguageManager {
+  constructor() {
+    this.currentLang = localStorage.getItem('language') || 'ar';
+    this.translations = {};
+    this.loadTranslations();
+  }
+
+  async loadTranslations() {
+    const pages = ['common', 'navigation', 'homepage', 'services', 'contact'];
+    
+    for (const page of pages) {
+      try {
+        const response = await fetch(`/locales/${this.currentLang}/${page}.json`);
+        this.translations[page] = await response.json();
+      } catch (error) {
+        console.error(`Error loading ${page} translations:`, error);
+      }
+    }
+    
+    this.updatePage();
+  }
+
+  t(key) {
+    const keys = key.split('.');
+    let translation = this.translations;
+    
+    for (const k of keys) {
+      translation = translation?.[k];
+    }
+    
+    return translation || key;
+  }
+
+  switchLanguage(lang) {
+    this.currentLang = lang;
+    localStorage.setItem('language', lang);
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+    this.loadTranslations();
+  }
+
+  updatePage() {
+    // Update all elements with data-i18n attribute
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+      const key = element.getAttribute('data-i18n');
+      element.textContent = this.t(key);
+    });
+
+    // Update placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+      const key = element.getAttribute('data-i18n-placeholder');
+      element.placeholder = this.t(key);
+    });
+  }
+}
+
+// Initialize language manager
+const langManager = new LanguageManager();
+```
+
+#### HTML Examples with Translation Keys
+```html
+<!-- Navigation -->
+<nav class="main-nav">
+  <a href="/" data-i18n="navigation.mainMenu.home">الرئيسية</a>
+  <a href="/about" data-i18n="navigation.mainMenu.about">من نحن</a>
+  <a href="/services" data-i18n="navigation.mainMenu.services">خدماتنا</a>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h1 class="hero-title" data-i18n="homepage.hero.title">وكالتك لأفراح أحلامك</h1>
+  <p class="hero-subtitle" data-i18n="homepage.hero.subtitle">سنساعدك في كتابة قصة حبك</p>
+  <button class="btn-emerald-luxury" data-i18n="homepage.hero.cta">ابدأ رحلتك معنا</button>
+</section>
+
+<!-- Form -->
+<form class="contact-form">
+  <input 
+    type="text" 
+    data-i18n-placeholder="contact.form.placeholders.coupleNames"
+    placeholder="أحمد وفاطمة"
+  >
+  <label data-i18n="common.labels.name">الاسم</label>
+</form>
+
+<!-- Language Switcher -->
+<div class="language-switcher">
+  <button onclick="langManager.switchLanguage('ar')" class="active">العربية</button>
+  <button onclick="langManager.switchLanguage('en')">English</button>
+</div>
+```
+
+### 📱 Responsive RTL Fixes
+```css
+/* Mobile RTL adjustments */
+@media (max-width: 768px) {
+  [dir="rtl"] .mobile-menu {
+    right: auto;
+    left: 0;
+    transform: translateX(-100%);
+  }
+  
+  [dir="rtl"] .mobile-menu.open {
+    transform: translateX(0);
+  }
+}
+
+/* Tablet RTL adjustments */
+@media (min-width: 768px) and (max-width: 1024px) {
+  [dir="rtl"] .grid-cards {
+    gap: 2rem 1rem;
+  }
+}
+```
